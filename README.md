@@ -1,19 +1,35 @@
 # Student CGPA API
 
-## Objective
-
-This project is a RESTful API built using Express.js that manages student academic performance records using an in-memory JSON array.
-
-The API supports multiple GET routes including static and dynamic routes.
+A lightweight RESTful API built with **Express.js** to manage and query student academic performance records, powered by in-memory JSON data.
 
 ---
 
-## Technologies Used
+## Objective
 
-- Node.js
-- Express.js
-- CORS Middleware
-- In-Memory JSON Data
+This project demonstrates the fundamentals of building a RESTful backend using **Node.js** and **Express.js**. It exposes multiple GET endpoints — both static and dynamic — to retrieve, filter, and aggregate student CGPA records without any external database.
+
+---
+
+## Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| Node.js | JavaScript runtime |
+| Express.js | Web framework and routing |
+| CORS | Cross-origin request handling |
+| In-Memory JSON | Data storage (no database required) |
+
+---
+
+## Project Structure
+
+```
+student-cgpa-api/
+├── server.js        # Entry point — all routes and logic
+├── package.json     # Project metadata and dependencies
+├── .gitignore       # Ignored files (node_modules, etc.)
+└── README.md        # Project documentation
+```
 
 ---
 
@@ -21,59 +37,124 @@ The API supports multiple GET routes including static and dynamic routes.
 
 ### Static Routes
 
-GET /students  
-GET /students/topper  
-GET /students/average  
-GET /students/count  
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/students` | Returns all student records |
+| GET | `/students/topper` | Returns the student with the highest CGPA |
+| GET | `/students/average` | Returns the average CGPA of all students |
+| GET | `/students/count` | Returns the total number of students |
 
 ### Dynamic Routes
 
-GET /students/:id  
-GET /students/branch/:branchName  
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/students/:id` | Returns a student by their ID |
+| GET | `/students/branch/:branchName` | Returns all students from a specific branch |
 
 ---
 
 ## Sample API URLs
 
-http://localhost:5000/students  
-http://localhost:5000/students/topper  
-http://localhost:5000/students/average  
-http://localhost:5000/students/count  
-http://localhost:5000/students/3  
-http://localhost:5000/students/branch/CSE  
+```
+# Get all students
+GET https://student-cgpa-api-1-q73f.onrender.com/students
+
+# Get the topper
+GET https://student-cgpa-api-1-q73f.onrender.com/students/topper
+
+# Get average CGPA
+GET https://student-cgpa-api-1-q73f.onrender.com/students/average
+
+# Get total student count
+GET https://student-cgpa-api-1-q73f.onrender.com/students/count
+
+# Get student by ID
+GET https://student-cgpa-api-1-q73f.onrender.com/students/3
+
+# Get students by branch
+GET https://student-cgpa-api-1-q73f.onrender.com/students/branch/CSE
+```
 
 ---
 
-## How to Run Locally
+## Steps to Run Locally
 
-1. Clone the repository  
-2. Run:
+**Prerequisites:** Make sure [Node.js](https://nodejs.org) is installed on your machine.
 
-   npm install
+**1. Clone the repository**
+```bash
+git clone https://github.com/mananjani2102/Student-cgpa-api.git
+cd Student-cgpa-api
+```
 
-3. Start server:
+**2. Install dependencies**
+```bash
+npm install
+```
 
-   node server.js
+**3. Start the server**
+```bash
+node server.js
+```
 
-4. Open in browser or Postman:
+**4. Test the API**
 
-   http://localhost:5000/students
+Open your browser or Postman and navigate to:
+```
+http://localhost:5000/students
+```
 
 ---
 
-## Deployment
+## Sample JSON Response
 
-Deployed on Render:
+```json
+// GET /students/topper
+{
+  "id": 2,
+  "name": "Ayesha Khan",
+  "branch": "CSE",
+  "cgpa": 9.8
+}
+```
 
-https://your-render-link.onrender.com
+```json
+// GET /students/average
+{
+  "averageCGPA": 8.45
+}
+```
+
+---
+
+## API Documentation
+
+Full API documentation is available on Postman:  
+https://documenter.getpostman.com/view/50839334/2sBXcGCe9h
+
+---
+
+## Deployed Link
+
+Live API hosted on Render:  
+https://student-cgpa-api-1-q73f.onrender.com
+
+> Note: The free Render instance may spin down after inactivity. The first request might take up to 30 seconds to respond.
+
+---
+
+## GitHub Repository
+
+https://github.com/mananjani2102/Student-cgpa-api
 
 ---
 
 ## Learning Outcomes
 
-- Designed RESTful GET APIs
-- Implemented dynamic route parameters
-- Performed server-side filtering and aggregation
-- Returned structured JSON responses
-- Deployed backend API to production
-- Documented APIs using Postman
+- Designed and implemented RESTful GET APIs using Express.js
+- Used dynamic route parameters (`:id`, `:branchName`) for flexible querying
+- Performed server-side filtering and aggregation on in-memory JSON data
+- Returned structured and consistent JSON responses
+- Configured CORS middleware for cross-origin access
+- Deployed a live backend API to a cloud platform (Render)
+- Documented and tested all API endpoints using Postman
